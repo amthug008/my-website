@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101828">
+  <title>Create an account | Smart POS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+  <main class="auth-container">
+    <section class="auth-card">
+      <a class="auth-brand" href="index.html" aria-label="Smart POS">
+        <span class="brand-logo">S</span>
+        <span>Smart<strong>POS</strong></span>
+      </a>
+
+      <div class="auth-heading">
+        <p class="eyebrow">START HERE</p>
+        <h1>CREATE AN ACCOUNT</h1>
+        <p>REGISTER HERE</p>
+      </div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="registerName">Full Name</label>
+          <input
+            id="registerName"
+            name="name"
+            type="text"
+            autocomplete="name"
+            maxlength="100"
+            placeholder="your name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="registerBusiness">Busines name</label>
+          <input
+            id="registerBusiness"
+            name="businessName"
+            type="text"
+            maxlength="100"
+            placeholder="your business name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="registerEmail">email address</label>
+          <input
+            id="registerEmail"
+            name="email"
+            type="email"
+            autocomplete="email"
+            maxlength="150"
+            placeholder="name@example.com"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="registerPassword">password</label>
+          <input
+            id="registerPassword"
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            placeholder="at least 8 characters"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">confirm Password</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            placeholder="confirm Password"
+            required
+          >
+        </div>
+
+        <p class="auth-message" id="registerMessage" aria-live="polite"></p>
+      </form>
+
+      <p class="auth-switch">
+        succesfully added?<br>
+        <a href="index.html">Back to homepage</a>
+      </p>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

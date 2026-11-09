@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101828">
+
+    <title>Smart POS | Business Management System</title>
+
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+                <div class="brand-logo">S</div>
+                <div class="brand-info">
+                    <h2>Smart<span>POS</span></h2>
+                    <small>Business Suite</small>
+                </div>
+            </div>
+
+            <div class="store-profile">
+                <div class="store-avatar">SP</div>
+                <div class="store-details">
+                    <h4>My Business</h4>
+                    <p>Retail Store</p>
+                </div>
+                <span class="store-status" title="Local system"></span>
+            </div>
+
+            <nav class="sidebar-navigation" aria-label="Main navigation">
+
+                <p class="nav-heading">MAIN MENU</p>
+
+                <button class="nav-item active"
+                        data-page="dashboard"
+                        type="button">
+                    <span class="nav-icon">▦</span>
+                    <span>Dashboard</span>
+                </button>
+
+                <button class="nav-item"
+                        data-page="pos"
+                        type="button">
+                    <span class="nav-icon">▣</span>
+                    <span>Point of Sale</span>
+                    <span class="nav-badge">POS</span>
+                </button>
+
+                <button class="nav-item"
+                        data-page="products"
+                        type="button">
+                    <span class="nav-icon">□</span>
+                    <span>Products</span>
+                </button>
+
+                <button class="nav-item"
+                        data-page="inventory"
+                        type="button">
+                    <span class="nav-icon">▤</span>
+                    <span>Inventory</span>
+                </button>
+
+                <p class="nav-heading">MANAGEMENT</p>
+
+                <button class="nav-item"
+                        data-page="customers"
+                        type="button">
+                    <span class="nav-icon">♙</span>
+                    <span>Customers</span>
+                </button>
+
+                <button class="nav-item"
+                        data-page="sales"
+                        type="button">
+                    <span class="nav-icon">↗</span>
+                    <span>Sales History</span>
+                </button>
+
+                <button class="nav-item"
+                        data-page="reports"
+                        type="button">
+                    <span class="nav-icon">▥</span>
+                    <span>Reports</span>
+                </button>
+
+                <button class="nav-item"
+                        data-page="expenses"
+                        type="button">
+                    <span class="nav-icon">−</span>
+                    <span>Expenses</span>
+                </button>
+
+                <p class="nav-heading">SYSTEM</p>
+
+                <button class="nav-item"
+                        data-page="settings"
+                        type="button">
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </button>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="offline-indicator">
+                    <span class="online-dot"></span>
+                    <div>
+                        <strong>Offline Ready</strong>
+                        <small>Local data storage</small>
+                    </div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <span>SMART POS SYSTEM</span>
+                    <small>Version 1.0.0</small>
+                </div>
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- Top navigation -->
+            <header class="topbar">
+
+                <div class="topbar-left">
+                    <button class="menu-toggle"
+                            id="menuToggle"
+                            type="button"
+                            aria-label="Toggle sidebar">
+                        ☰
+                    </button>
+
+                    <div class="breadcrumb">
+                        <span>Workspace</span>
+                        <span class="breadcrumb-divider">/</span>
+                        <strong id="pageBreadcrumb">Dashboard</strong>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="system-date">
+                        <span class="date-icon">◷</span>
+                        <span id="currentDate">Loading date...</span>
+                    </div>
+
+                    <button class="icon-button"
+                            id="notificationsButton"
+                            type="button"
+                            aria-label="Notifications">
+                        ♧
+                    </button>
+
+                    <div class="user-profile">
+                        <div class="user-avatar">EN</div>
+                        <div class="user-details">
+                            <strong>Administrator</strong>
+                            <small>System Owner</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Page content -->
+            <div class="page-content" id="pageContent">
+
+                <!-- ================= DASHBOARD ================= -->
+                <section class="page-section active"
+                         id="dashboardPage"
+                         data-section="dashboard">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">BUSINESS OVERVIEW</p>
+                            <h1>Dashboard</h1>
+                            <p class="page-description">
+                                Welcome back! Here is your business overview.
+                            </p>
+                        </div>
+
+                        <button class="primary-button"
+                                type="button"
+                                data-navigate="pos">
+                            <span>＋</span> New Sale
+                        </button>
+                    </div>
+
+
+                    <!-- Statistics cards -->
+                    <div class="stats-grid">
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Today's Sales</span>
+                                <span class="stat-icon sales-icon">↗</span>
+                            </div>
+                            <h2 id="todaySales">TZS 0</h2>
+                            <div class="stat-bottom">
+                                <span class="stat-note">Sales revenue today</span>
+                            </div>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Total Transactions</span>
+                                <span class="stat-icon transactions-icon">▤</span>
+                            </div>
+                            <h2 id="totalTransactions">0</h2>
+                            <div class="stat-bottom">
+                                <span class="stat-note">Completed sales</span>
+                            </div>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Products</span>
+                                <span class="stat-icon products-icon">□</span>
+                            </div>
+                            <h2 id="totalProducts">0</h2>
+                            <div class="stat-bottom">
+                                <span class="stat-note">Products registered</span>
+                            </div>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Low Stock Items</span>
+                                <span class="stat-icon stock-icon">!</span>
+                            </div>
+                            <h2 id="lowStockItems">0</h2>
+                            <div class="stat-bottom">
+                                <span class="stat-note">Items needing attention</span>
+                            </div>
+                        </article>
+
+                    </div>
+
+
+                    <!-- Dashboard main grid -->
+                    <div class="dashboard-grid">
+
+                        <section class="panel sales-overview">
+
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Sales Overview</h3>
+                                    <p>Monitor your business performance</p>
+                                </div>
+
+                                <span class="panel-tag">This Week</span>
+                            </div>
+
+                            <div class="chart-summary">
+                                <div>
+                                    <small>Total Revenue</small>
+                                    <h2 id="weeklySales">TZS 0</h2>
+                                </div>
+                                <span class="chart-legend">
+                                    <span></span> Sales
+                                </span>
+                            </div>
+
+                            <div class="chart-container"
+                                 id="salesChart"
+                                 aria-label="Weekly sales chart">
+
+                                <div class="chart-empty">
+                                    <span class="empty-icon">▥</span>
+                                    <p>Your sales chart will appear here.</p>
+                                    <small>Complete sales to view performance.</small>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <section class="panel quick-actions">
+
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Quick Actions</h3>
+                                    <p>Manage your business faster</p>
+                                </div>
+                            </div>
+
+                            <div class="actions-grid">
+
+                                <button class="action-card"
+                                        type="button"
+                                        data-navigate="pos">
+                                    <span class="action-icon action-blue">＋</span>
+                                    <strong>New Sale</strong>
+                                    <small>Start checkout</small>
+                                </button>
+
+                                <button class="action-card"
+                                        type="button"
+                                        data-navigate="products">
+                                    <span class="action-icon action-purple">□</span>
+                                    <strong>Add Product</strong>
+                                    <small>Manage products</small>
+                                </button>
+
+                                <button class="action-card"
+                                        type="button"
+                                        data-navigate="customers">
+                                    <span class="action-icon action-green">♙</span>
+                                    <strong>Add Customer</strong>
+                                    <small>Customer records</small>
+                                </button>
+
+                                <button class="action-card"
+                                        type="button"
+                                        data-navigate="reports">
+                                    <span class="action-icon action-orange">▥</span>
+                                    <strong>View Reports</strong>
+                                    <small>Analyze results</small>
+                                </button>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- Recent sales -->
+                    <section class="panel recent-sales">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Recent Transactions</h3>
+                                <p>Latest sales recorded in your system</p>
+                            </div>
+
+                            <button class="text-button"
+                                    type="button"
+                                    data-navigate="sales">
+                                View All →
+                            </button>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>SALE ID</th>
+                                        <th>DATE</th>
+                                        <th>ITEMS</th>
+                                        <th>PAYMENT</th>
+                                        <th>AMOUNT</th>
+                                        <th>STATUS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="recentSalesTable">
+                                    <tr>
+                                        <td colspan="6" class="empty-table">
+                                            No transactions recorded yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                </section>
+
+
+                <!-- ================= POINT OF SALE ================= -->
+                <section class="page-section" id="posPage"
+                         data-section="pos">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">CHECKOUT & BILLING</p>
+                            <h1>Point of Sale</h1>
+                            <p class="page-description">
+                                Select products and process customer payments.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pos-layout">
+
+                        <section class="panel pos-products-panel">
+
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Available Products</h3>
+                                    <p>Select a product to add it to the cart.</p>
+                                </div>
+                            </div>
+
+                            <div class="search-box">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="posProductSearch"
+                                       placeholder="Search by product name or SKU..."
+                                       aria-label="Search products for sale">
+                            </div>
+
+                            <div class="pos-product-grid" id="posProductGrid">
+                                <div class="empty-state">
+                                    <span class="empty-icon">□</span>
+                                    <h3>No products available</h3>
+                                    <p>Add products to your inventory first.</p>
+                                    <button class="primary-button"
+                                            type="button"
+                                            data-navigate="products">
+                                        Add Products
+                                    </button>
+                                </div>
+                            </div>
+
+                        </section>
+
+
+                        <section class="panel cart-panel">
+
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Current Order</h3>
+                                    <p>Review items before checkout.</p>
+                                </div>
+
+                                <button class="text-button"
+                                        id="clearCartButton"
+                                        type="button">
+                                    Clear Cart
+                                </button>
+                            </div>
+
+                            <div class="cart-customer">
+                                <label for="saleCustomer">Customer</label>
+                                <select id="saleCustomer">
+                                    <option value="">Walk-in Customer</option>
+                                </select>
+                            </div>
+
+                            <div class="cart-items" id="cartItems">
+                                <div class="empty-state">
+                                    <span class="empty-icon">▣</span>
+                                    <p>Your shopping cart is empty.</p>
+                                </div>
+                            </div>
+
+                            <div class="cart-summary">
+
+                                <div class="summary-row">
+                                    <span>Subtotal</span>
+                                    <strong id="cartSubtotal">TZS 0</strong>
+                                </div>
+
+                                <div class="summary-row">
+                                    <label for="saleDiscount">Discount (TZS)</label>
+                                    <input type="number"
+                                           id="saleDiscount"
+                                           min="0"
+                                           step="1"
+                                           value="0">
+                                </div>
+
+                                <div class="summary-row total-row">
+                                    <span>Total Amount</span>
+                                    <strong id="cartTotal">TZS 0</strong>
+                                </div>
+
+                                <label for="paymentMethod">Payment Method</label>
+                                <select id="paymentMethod">
+                                    <option value="Cash">Cash</option>
+                                    <option value="Mobile Money">Mobile Money</option>
+                                    <option value="Bank">Bank Transfer</option>
+                                </select>
+
+                                <label for="amountPaid">Amount Paid (TZS)</label>
+                                <input type="number"
+                                       id="amountPaid"
+                                       min="0"
+                                       step="1"
+                                       placeholder="Enter amount received">
+
+                                <div class="summary-row change-row">
+                                    <span>Change</span>
+                                    <strong id="saleChange">TZS 0</strong>
+                                </div>
+
+                                <button class="primary-button checkout-button"
+                                        id="completeSaleButton"
+                                        type="button">
+                                    Complete Sale
+                                </button>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PRODUCTS ================= -->
+                <section class="page-section" id="productsPage"
+                         data-section="products">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">CATALOG MANAGEMENT</p>
+                            <h1>Products</h1>
+                            <p class="page-description">
+                                Add, search, edit and manage your products.
+                            </p>
+                        </div>
+
+                        <button class="primary-button"
+                                id="addProductButton"
+                                type="button">
+                            ＋ Add Product
+                        </button>
+                    </div>
+
+                    <section class="panel">
+
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="productSearch"
+                                       placeholder="Search products by name or SKU...">
+                            </div>
+
+                            <select id="productCategoryFilter"
+                                    aria-label="Filter products by category">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>PRODUCT</th>
+                                        <th>SKU</th>
+                                        <th>CATEGORY</th>
+                                        <th>BUYING PRICE</th>
+                                        <th>SELLING PRICE</th>
+                                        <th>STOCK</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="productsTable">
+                                    <tr>
+                                        <td colspan="7" class="empty-table">
+                                            No products registered yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <!-- Product form dialog -->
+                    <dialog class="app-dialog" id="productDialog">
+
+                        <form id="productForm">
+
+                            <div class="dialog-header">
+                                <div>
+                                    <h2 id="productDialogTitle">Add Product</h2>
+                                    <p>Enter the product details below.</p>
+                                </div>
+
+                                <button class="close-button"
+                                        id="closeProductDialog"
+                                        type="button"
+                                        aria-label="Close dialog">×</button>
+                            </div>
+
+                            <input type="hidden" id="productId">
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="productName">Product Name *</label>
+                                    <input id="productName"
+                                           type="text"
+                                           required
+                                           maxlength="100"
+                                           placeholder="e.g. Exercise Book">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productSku">SKU / Barcode *</label>
+                                    <input id="productSku"
+                                           type="text"
+                                           required
+                                           maxlength="50"
+                                           placeholder="e.g. EXB-001">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productCategory">Category *</label>
+                                    <input id="productCategory"
+                                           type="text"
+                                           required
+                                           maxlength="60"
+                                           placeholder="e.g. Stationery">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productUnit">Unit</label>
+                                    <select id="productUnit">
+                                        <option value="Piece">Piece</option>
+                                        <option value="Packet">Packet</option>
+                                        <option value="Box">Box</option>
+                                        <option value="Kg">Kilogram</option>
+                                        <option value="Litre">Litre</option>
+                                        <option value="Bottle">Bottle</option>
+                                        <option value="Dozen">Dozen</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productCost">Buying Price (TZS) *</label>
+                                    <input id="productCost"
+                                           type="number"
+                                           required
+                                           min="0"
+                                           step="0.01"
+                                           placeholder="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productPrice">Selling Price (TZS) *</label>
+                                    <input id="productPrice"
+                                           type="number"
+                                           required
+                                           min="0"
+                                           step="0.01"
+                                           placeholder="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productStock">Initial Stock *</label>
+                                    <input id="productStock"
+                                           type="number"
+                                           required
+                                           min="0"
+                                           step="1"
+                                           placeholder="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productMinStock">Minimum Stock</label>
+                                    <input id="productMinStock"
+                                           type="number"
+                                           min="0"
+                                           step="1"
+                                           value="5">
+                                </div>
+
+                            </div>
+
+                            <div class="dialog-actions">
+                                <button class="secondary-button"
+                                        id="cancelProductButton"
+                                        type="button">
+                                    Cancel
+                                </button>
+
+                                <button class="primary-button"
+                                        type="submit">
+                                    Save Product
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </dialog>
+
+                </section>
+
+
+                <!-- ================= INVENTORY ================= -->
+                <section class="page-section" id="inventoryPage"
+                         data-section="inventory">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">STOCK CONTROL</p>
+                            <h1>Inventory</h1>
+                            <p class="page-description">
+                                Monitor available stock and low-stock products.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid inventory-stats">
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Total Products</span>
+                                <span class="stat-icon products-icon">□</span>
+                            </div>
+                            <h2 id="inventoryProductCount">0</h2>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Total Stock Units</span>
+                                <span class="stat-icon transactions-icon">▤</span>
+                            </div>
+                            <h2 id="inventoryStockUnits">0</h2>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Low Stock</span>
+                                <span class="stat-icon stock-icon">!</span>
+                            </div>
+                            <h2 id="inventoryLowStock">0</h2>
+                        </article>
+
+                    </div>
+
+                    <section class="panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Stock Overview</h3>
+                                <p>Current quantities and stock status.</p>
+                            </div>
+                        </div>
+
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="inventorySearch"
+                                       placeholder="Search inventory...">
+                            </div>
+
+                            <select id="inventoryStatusFilter"
+                                    aria-label="Filter inventory status">
+                                <option value="">All Stock Levels</option>
+                                <option value="low">Low Stock</option>
+                                <option value="out">Out of Stock</option>
+                                <option value="available">Available</option>
+                            </select>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>PRODUCT</th>
+                                        <th>SKU</th>
+                                        <th>AVAILABLE STOCK</th>
+                                        <th>MINIMUM STOCK</th>
+                                        <th>STOCK STATUS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="inventoryTable">
+                                    <tr>
+                                        <td colspan="5" class="empty-table">
+                                            No inventory records available.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                </section>
+
+
+                <!-- ================= CUSTOMERS ================= -->
+                <section class="page-section" id="customersPage"
+                         data-section="customers">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">CUSTOMER RELATIONSHIPS</p>
+                            <h1>Customers</h1>
+                            <p class="page-description">
+                                Keep customer information organized.
+                            </p>
+                        </div>
+
+                        <button class="primary-button"
+                                id="addCustomerButton"
+                                type="button">
+                            ＋ Add Customer
+                        </button>
+                    </div>
+
+                    <section class="panel">
+
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="customerSearch"
+                                       placeholder="Search customers...">
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>CUSTOMER</th>
+                                        <th>PHONE</th>
+                                        <th>EMAIL</th>
+                                        <th>ADDRESS</th>
+                                        <th>REGISTERED</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="customersTable">
+                                    <tr>
+                                        <td colspan="6" class="empty-table">
+                                            No customers registered yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <dialog class="app-dialog" id="customerDialog">
+
+                        <form id="customerForm">
+
+                            <div class="dialog-header">
+                                <div>
+                                    <h2 id="customerDialogTitle">Add Customer</h2>
+                                    <p>Enter customer information.</p>
+                                </div>
+
+                                <button class="close-button"
+                                        id="closeCustomerDialog"
+                                        type="button"
+                                        aria-label="Close dialog">×</button>
+                            </div>
+
+                            <input type="hidden" id="customerId">
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="customerName">Full Name *</label>
+                                    <input id="customerName"
+                                           type="text"
+                                           required
+                                           maxlength="100"
+                                           placeholder="Customer name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customerPhone">Phone Number</label>
+                                    <input id="customerPhone"
+                                           type="tel"
+                                           maxlength="30"
+                                           placeholder="Phone number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customerEmail">Email</label>
+                                    <input id="customerEmail"
+                                           type="email"
+                                           maxlength="100"
+                                           placeholder="name@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customerAddress">Address</label>
+                                    <input id="customerAddress"
+                                           type="text"
+                                           maxlength="150"
+                                           placeholder="Customer address">
+                                </div>
+
+                            </div>
+
+                            <div class="dialog-actions">
+                                <button class="secondary-button"
+                                        id="cancelCustomerButton"
+                                        type="button">
+                                    Cancel
+                                </button>
+
+                                <button class="primary-button" type="submit">
+                                    Save Customer
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </dialog>
+
+                </section>
+
+
+                <!-- ================= SALES HISTORY ================= -->
+                <section class="page-section" id="salesPage"
+                         data-section="sales">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">TRANSACTION MANAGEMENT</p>
+                            <h1>Sales History</h1>
+                            <p class="page-description">
+                                Review completed transactions.
+                            </p>
+                        </div>
+
+                        <button class="secondary-button"
+                                id="exportSalesButton"
+                                type="button">
+                            ↓ Export CSV
+                        </button>
+                    </div>
+
+                    <section class="panel">
+
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="salesSearch"
+                                       placeholder="Search by sale ID or customer...">
+                            </div>
+
+                            <input type="date"
+                                   id="salesDateFilter"
+                                   aria-label="Filter sales by date">
+
+                            <select id="salesPaymentFilter"
+                                    aria-label="Filter sales by payment method">
+                                <option value="">All Payment Methods</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Mobile Money">Mobile Money</option>
+                                <option value="Bank">Bank Transfer</option>
+                            </select>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>SALE ID</th>
+                                        <th>DATE</th>
+                                        <th>CUSTOMER</th>
+                                        <th>ITEMS</th>
+                                        <th>PAYMENT METHOD</th>
+                                        <th>TOTAL</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="salesTable">
+                                    <tr>
+                                        <td colspan="7" class="empty-table">
+                                            No sales recorded yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                </section>
+
+
+                <!-- ================= REPORTS ================= -->
+                <section class="page-section" id="reportsPage"
+                         data-section="reports">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">BUSINESS INTELLIGENCE</p>
+                            <h1>Reports</h1>
+                            <p class="page-description">
+                                Analyze sales, revenue and product performance.
+                            </p>
+                        </div>
+
+                        <button class="secondary-button"
+                                id="exportReportButton"
+                                type="button">
+                            ↓ Export Report
+                        </button>
+                    </div>
+
+                    <section class="panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Report Period</h3>
+                                <p>Select dates for your sales analysis.</p>
+                            </div>
+                        </div>
+
+                        <div class="report-filters">
+
+                            <div class="form-group">
+                                <label for="reportStartDate">Start Date</label>
+                                <input type="date" id="reportStartDate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reportEndDate">End Date</label>
+                                <input type="date" id="reportEndDate">
+                            </div>
+
+                            <button class="primary-button"
+                                    id="generateReportButton"
+                                    type="button">
+                                Generate Report
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                    <div class="stats-grid report-stats">
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Total Revenue</span>
+                                <span class="stat-icon sales-icon">↗</span>
+                            </div>
+                            <h2 id="reportRevenue">TZS 0</h2>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Estimated Profit</span>
+                                <span class="stat-icon products-icon">＋</span>
+                            </div>
+                            <h2 id="reportProfit">TZS 0</h2>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Transactions</span>
+                                <span class="stat-icon transactions-icon">▤</span>
+                            </div>
+                            <h2 id="reportTransactions">0</h2>
+                        </article>
+
+                    </div>
+
+                    <section class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Report Details</h3>
+                                <p>Sales within the selected date range.</p>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>DATE</th>
+                                        <th>TRANSACTIONS</th>
+                                        <th>REVENUE</th>
+                                        <th>ESTIMATED PROFIT</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="reportsTable">
+                                    <tr>
+                                        <td colspan="4" class="empty-table">
+                                            Generate a report to view results.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </section>
+
+
+                <!-- ================= EXPENSES ================= -->
+                <section class="page-section" id="expensesPage"
+                         data-section="expenses">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">BUSINESS COSTS</p>
+                            <h1>Expenses</h1>
+                            <p class="page-description">
+                                Record and monitor your business expenses.
+                            </p>
+                        </div>
+
+                        <button class="primary-button"
+                                id="addExpenseButton"
+                                type="button">
+                            ＋ Add Expense
+                        </button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span class="stat-label">Total Expenses</span>
+                                <span class="stat-icon stock-icon">−</span>
+                            </div>
+                            <h2 id="totalExpenses">TZS 0</h2>
+                        </article>
+                    </div>
+
+                    <section class="panel">
+
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="expenseSearch"
+                                       placeholder="Search expenses...">
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>DATE</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>CATEGORY</th>
+                                        <th>AMOUNT</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="expensesTable">
+                                    <tr>
+                                        <td colspan="5" class="empty-table">
+                                            No expenses recorded yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <dialog class="app-dialog" id="expenseDialog">
+
+                        <form id="expenseForm">
+
+                            <div class="dialog-header">
+                                <div>
+                                    <h2>Add Expense</h2>
+                                    <p>Record a business expense.</p>
+                                </div>
+
+                                <button class="close-button"
+                                        id="closeExpenseDialog"
+                                        type="button"
+                                        aria-label="Close dialog">×</button>
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="expenseDescription">Description *</label>
+                                    <input id="expenseDescription"
+                                           type="text"
+                                           required
+                                           maxlength="120"
+                                           placeholder="e.g. Transport">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expenseCategory">Category *</label>
+                                    <select id="expenseCategory" required>
+                                        <option value="Transport">Transport</option>
+                                        <option value="Rent">Rent</option>
+                                        <option value="Utilities">Utilities</option>
+                                        <option value="Supplies">Supplies</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expenseAmount">Amount (TZS) *</label>
+                                    <input id="expenseAmount"
+                                           type="number"
+                                           required
+                                           min="0.01"
+                                           step="0.01"
+                                           placeholder="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expenseDate">Date *</label>
+                                    <input id="expenseDate"
+                                           type="date"
+                                           required>
+                                </div>
+
+                            </div>
+
+                            <div class="dialog-actions">
+                                <button class="secondary-button"
+                                        id="cancelExpenseButton"
+                                        type="button">
+                                    Cancel
+                                </button>
+
+                                <button class="primary-button" type="submit">
+                                    Save Expense
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </dialog>
+
+                </section>
+
+
+                <!-- ================= SETTINGS ================= -->
+                <section class="page-section" id="settingsPage"
+                         data-section="settings">
+
+                    <div class="welcome-section">
+                        <div>
+                            <p class="eyebrow">SYSTEM CONFIGURATION</p>
+                            <h1>Settings</h1>
+                            <p class="page-description">
+                                Configure your store and local data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <section class="panel settings-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Business Information</h3>
+                                <p>These details can be used on receipts.</p>
+                            </div>
+                        </div>
+
+                        <form id="settingsForm">
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="businessName">Business Name *</label>
+                                    <input id="businessName"
+                                           type="text"
+                                           required
+                                           maxlength="100"
+                                           value="My Business">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="businessPhone">Phone Number</label>
+                                    <input id="businessPhone"
+                                           type="tel"
+                                           maxlength="30"
+                                           placeholder="Business phone">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="businessAddress">Business Address</label>
+                                    <input id="businessAddress"
+                                           type="text"
+                                           maxlength="150"
+                                           placeholder="Business location">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="businessCurrency">Currency</label>
+                                    <select id="businessCurrency">
+                                        <option value="TZS">TZS - Tanzanian Shilling</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="dialog-actions">
+                                <button class="primary-button" type="submit">
+                                    Save Settings
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <section class="panel settings-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Local Data Management</h3>
+                                <p>
+                                    Manage data stored in this browser.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="settings-action">
+                            <div>
+                                <strong>Export System Backup</strong>
+                                <p>Save a copy of your business data as a JSON file.</p>
+                            </div>
+
+                            <button class="secondary-button"
+                                    id="backupButton"
+                                    type="button">
+                                Export Backup
+                            </button>
+                        </div>
+
+                        <div class="settings-action">
+                            <div>
+                                <strong>Restore System Backup</strong>
+                                <p>Restore data from a previously exported backup.</p>
+                            </div>
+
+                            <button class="secondary-button"
+                                    id="restoreButton"
+                                    type="button">
+                                Import Backup
+                            </button>
+
+                            <input type="file"
+                                   id="restoreFileInput"
+                                   accept=".json,application/json"
+                                   hidden>
+                        </div>
+
+                        <div class="settings-action danger-zone">
+                            <div>
+                                <strong>Reset All Data</strong>
+                                <p>
+                                    Permanently clear locally stored business records.
+                                    Export a backup first.
+                                </p>
+                            </div>
+
+                            <button class="danger-button"
+                                    id="resetDataButton"
+                                    type="button">
+                                Reset Data
+                            </button>
+                        </div>
+
+                    </section>
+
+                </section>
+
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="main-footer">
+                <p>© <span id="footerYear">2026</span> Smart POS System</p>
+                <p>Designed for efficient business management.</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- Toast notifications -->
+    <div class="toast-container"
+         id="toastContainer"
+         aria-live="polite"
+         aria-atomic="true"></div>
+
+
+    <!-- Sale receipt dialog -->
+    <dialog class="app-dialog receipt-dialog" id="receiptDialog">
+
+        <div id="receiptContent">
+
+            <div class="receipt-header">
+                <h2 id="receiptBusinessName">My Business</h2>
+                <p id="receiptBusinessInfo">Sales Receipt</p>
+                <div class="receipt-divider"></div>
+                <h3>SALES RECEIPT</h3>
+            </div>
+
+            <div class="receipt-meta">
+                <p>Receipt: <strong id="receiptSaleId">-</strong></p>
+                <p>Date: <strong id="receiptDate">-</strong></p>
+                <p>Customer: <strong id="receiptCustomer">Walk-in Customer</strong></p>
+                <p>Payment: <strong id="receiptPayment">Cash</strong></p>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ITEM</th>
+                            <th>QTY</th>
+                            <th>PRICE</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="receiptItems"></tbody>
+                </table>
+            </div>
+
+            <div class="receipt-totals">
+                <p>Subtotal <strong id="receiptSubtotal">TZS 0</strong></p>
+                <p>Discount <strong id="receiptDiscount">TZS 0</strong></p>
+                <p>Total <strong id="receiptTotal">TZS 0</strong></p>
+                <p>Paid <strong id="receiptPaid">TZS 0</strong></p>
+                <p>Change <strong id="receiptChange">TZS 0</strong></p>
+            </div>
+
+            <p class="receipt-thank-you">
+                Thank you for shopping with us!
+            </p>
+
+        </div>
+
+        <div class="dialog-actions no-print">
+            <button class="secondary-button"
+                    id="closeReceiptButton"
+                    type="button">
+                Close
+            </button>
+
+            <button class="primary-button"
+                    id="printReceiptButton"
+                    type="button">
+                Print Receipt
+            </button>
+        </div>
+
+    </dialog>
+
+
+    <!-- JavaScript -->
+    <script src="libs/qrcode.min.js" defer></script>
+    <script src="script.js" defer></script>
+
+</body>
+</html>
